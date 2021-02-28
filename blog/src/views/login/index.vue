@@ -12,16 +12,19 @@
     <div class="userInput">
       <div class="input_title">Email address</div>
       <div>
-        <input type="text" placeholder="请输入用户名">
+        <el-input v-model="username" type="text" placeholder="请输入用户名"></el-input>
       </div>
       <div class="input_title">Set passward</div>
       <div>
-        <input type="text" placeholder="请输入密码">
+        <el-input v-model="password" type="text" placeholder="请输入密码" show-password></el-input>
       </div>
-      <div>
+      <!-- <div>
         <el-checkbox class="checkbox" v-model="checked" label="Show password"></el-checkbox>
+      </div> -->
+      <el-button type="primary" class="login_button" @click="login">Sign Up </el-button>
+      <div class="records">
+        京公网安备11000002000001号
       </div>
-      <div class="login_button">Sign Up -></div>
     </div>
   </div>
 </template>
@@ -33,8 +36,36 @@
     name:'login',
     data(){
       return {
+        username:'',
+        password:'',
         checked:true
         //login_img
+      }
+    },
+    methods:{
+      login(){
+        if(this.username == ""){
+          this.$message({
+            message: '用户名不能为空，请检查',
+            type: 'warning'
+          });
+          return
+        }
+        if(this.password == ""){
+          this.$message({
+            message: '密码不能为空，请检查',
+            type: 'warning'
+          });
+          return
+        }
+        if(this.username != "chenhaoyue" || this.password != "123456"){
+          this.$message({
+            message: '用户名或密码错误，请重试',
+            type: 'warning'
+          });
+          return
+        }
+        this.$router.push('/main')
       }
     }
   }
@@ -56,7 +87,7 @@
 .userInput{
   display: inline-block;
   position: relative;
-  top: -185px;
+  top: -156px;
   left: 142px;
   .input_title{
     font-weight: bold;
@@ -76,16 +107,19 @@
     font-size: 10px;
   }
   .login_button{
-    width:300px;
+    width:310px;
     height: 40px;
     border-radius: 7px;
-    text-align: center;
-    line-height: 40px;
     position: relative;
-    top: 15px;
+    top: 30px;
     background-color: #1AAD85;
-    color: white;
-    font-size: 14px;
+  }
+  .records{
+    position: relative;
+    font-size: 13px;
+    color: #bbb;
+    top: 40px;
+    text-align: center;
   }
 }
 </style>

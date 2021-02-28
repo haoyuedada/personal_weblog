@@ -10,7 +10,9 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export const constantRouterMap = [
-  {path:'/login',component:() => import('@/views/login/index')}
+  {path:'/login',component:() => import('@/views/login/index')},
+  {path:'/',redirect:'/login'},
+  {path:'/main',component:() => import('@/views/main/index')}
 ]
 
 export default new Router({
